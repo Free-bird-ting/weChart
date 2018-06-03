@@ -1,3 +1,49 @@
-<p>
-  user-list works!
-</p>
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu [nzTheme]="'dark'"
+        [nzMode]="'horizontal'"
+        style="line-height: 64px;">
+    </ul>
+  </nz-header>
+  <nz-content style="padding:0 50px; height:500px;" class="user-list">
+    <nz-breadcrumb style="margin:16px 0;">
+    </nz-breadcrumb>
+    <nz-layout style="padding:24px 0; background: #fff">
+      <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed"
+                [nzWidth]="width"
+                [nzReverseArrow]="isReverseArrow">
+        <ul nz-menu
+            [nzTheme]="'dark'"
+            [nzMode]="'inline'"
+            [nzInlineCollapsed]="isCollapsed"
+            style="width:150px !important;">
+          <li nz-menu-item><span><i class="anticon anticon-file user-list"></i><span class="nav-text">用户列表</span></span>
+          </li>
+          <nz-list [nzDataSource]="data"
+                   [nzRenderItem]="item"
+                   [nzItemLayout]="'horizontal'">
+            <ng-template #item let-item>
+              <nz-list-item nz-menu-item class="nav-text">
+                <nz-list-item-meta
+                  [nzTitle]="nzTitle"
+                  (click)="onSelect(item)"
+                  nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  nzDescription="{{item.description}}">
+                  <ng-template #nzTitle>
+                    <a>{{item.sign}}</a>
+                  </ng-template>
+                </nz-list-item-meta>
+              </nz-list-item>
+            </ng-template>
+          </nz-list>
+        </ul>
+      </nz-sider>
+      <app-social [user]="selectedUser"></app-social>
+      <nz-content style="padding: 0 24px; min-height: 480px; max-height: 480px;">
+        <app-user-content></app-user-content>
+      </nz-content>
+    </nz-layout>
+  </nz-content>
+  <nz-footer style="text-align: center;">Ant Design ©2018 Implement By Angular</nz-footer>
+</nz-layout>

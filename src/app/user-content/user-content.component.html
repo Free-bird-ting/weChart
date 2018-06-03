@@ -1,0 +1,46 @@
+<div nz-row class="content">
+  <div nz-col [nzSpan]="24">
+    <span>联系人的姓名</span>
+    <nz-popover [nzTitle]="'Title'" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
+      <label nz-popover>
+        <i class="anticon anticon-user"></i>详情</label>
+      <ng-template #nzTemplate>
+        <div>
+          <app-group-detail></app-group-detail>
+          <app-user-detail></app-user-detail>
+        </div>
+      </ng-template>
+    </nz-popover>
+  </div>
+</div>
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+      <ng-template #item let-item>
+        <nz-list-item *ngIf="!+item.isSend">
+          <nz-list-item-meta
+            [nzTitle]="nzTitle"
+            nzAvatar="{{item.avatalUrl}}"
+            nzInformation="Ant Design">
+            <ng-template #nzTitle>
+              <span>{{item.title}}</span>
+            </ng-template>
+          </nz-list-item-meta>
+        </nz-list-item>
+
+        <div nz-row>
+          <div nz-col [nzSpan]="24">
+            <div nz-row style="float:right;">
+              <nz-list-item *ngIf="+item.isSend" nz-col [nzSpan]="24">
+                <div nz-col [nzSpan]="24" class="conten-inform">
+                  <span>{{item.title}}</span>
+                  <img src="{{item.avatalUrl}}">
+                </div>
+              </nz-list-item>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </nz-list>
+  </div>
+</div>
