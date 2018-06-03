@@ -8,6 +8,6 @@
 .ant-list-split .ant-list-item{
   border-bottom: none !important;
 }
-.user-list .ant-menu-dark{
-  background: white;
+.ant-list-item-meta-title{
+  margin: 8px 0 0 0 !important;
 }
